@@ -1,42 +1,38 @@
 import com.codeborne.selenide.AssertionMode;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.testng.SoftAsserts;
-import org.apache.xmlbeans.impl.xb.xmlconfig.ConfigDocument;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Configuration.assertionMode;
-import static com.codeborne.selenide.Configuration.baseUrl;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.Selenide.open;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 @Listeners({ SoftAsserts.class})
 public class ConfigTests {
-    public ConfigTests(){
+    SoftAssert softAssert = new SoftAssert();
+    @BeforeSuite
+    public void beforeSuit(){
         Configuration.timeout = 5000;
         Configuration.savePageSource = false;
         Configuration.screenshots = true;
-        baseUrl = "http://the-internet.herokuapp.com";
-
-        assertionMode = AssertionMode.SOFT;
     }
+
     @BeforeMethod
-    public void openBrowser(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-    }
-
-    @Test
-    public void test(){
-        open(baseUrl);
+    public void beforeMethod(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        WebDriverRunner.setWebDriver(driver);
     }
     @AfterMethod
-    public void closeBrowser(){
-        closeWebDriver();
+    public void afterMethod(){
+        WebDriverRunner.closeWebDriver();
     }
 
+    @AfterClass
+    public void afterClass(){
+        softAssert.assertAll();
+    }
 }
 
