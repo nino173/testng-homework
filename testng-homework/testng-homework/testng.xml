@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1"  >
+    <test name="Nopackage" parallel="classes" preserve-order="false" >
+        <classes>
+            <class name = "CheckboxTests" />
+            <class name = "RadioButtonTests"/>
+                <methods>
+                    <exclude name="radiobuttonTest"></exclude>
+                </methods>
+        </classes>
+    </test>
+</suite>
