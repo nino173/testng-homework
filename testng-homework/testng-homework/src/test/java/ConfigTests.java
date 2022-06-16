@@ -16,6 +16,7 @@ public class ConfigTests {
         Configuration.timeout = 5000;
         Configuration.savePageSource = false;
         Configuration.screenshots = true;
+        Configuration.startMaximized = true;
     }
 
     @BeforeMethod

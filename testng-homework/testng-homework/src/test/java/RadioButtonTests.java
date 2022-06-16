@@ -22,14 +22,16 @@ public class RadioButtonTests extends ConfigTests {
         Configuration.reopenBrowserOnFail = true;
         Configuration.baseUrl = "https://demoqa.com";
     }
-    @Test()
-   public void yesradiobuttonTest(){
+   // @Test(priority = 1)
+   @Test(groups = {"FrontEnd"})
+    public void yesradiobuttonTest(){
         open("/radio-button");
         SelenideElement yesButton = $(by("for","yesRadio"));
         yesButton.click();
         softAssert.assertFalse(yesButton.isEnabled(),"option YES is enabled");
    }
-    @Test
+   // @Test(priority = 2)
+   @Test(groups = {"BackEnd"})
     public void noradiobuttonTest(){
         open("/radio-button");
         SelenideElement noButton = $("#noRadio");
