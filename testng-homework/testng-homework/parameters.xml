@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" thread-count="1"  >
+    <parameter name="name" value="Lucifer"/>
+    <parameter name="surname" value="Morningtar"/>
+    <parameter name="gender" value="1"/>
+    <parameter name="number" value="6666666666"/>
+    <parameter name="name" value="Tamar"/>
+    <parameter name="surname" value="Bagrationi"/>
+    <parameter name="gender" value="-1"/>
+    <parameter name="number" value="1213121312"/>
+    <parameter name="name" value="Donald"/>
+    <parameter name="surname" value="Duck"/>
+    <parameter name="gender" value="0"/>
+    <parameter name="number" value="1195995911"/>
+    <test name="parametersTest">
+        <classes>
+            <class name = "Parametrization"/>
+        </classes>
+    </test>
+
+</suite>
